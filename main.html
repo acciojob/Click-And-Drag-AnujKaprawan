@@ -36,42 +36,111 @@
 
 <script>
 //Your code goes here 
+	// const items = document.getElementsByClassName("items");
+	// let isDragging = false;
+
+	// element.addEventListener('mousedown', function(event) {
+	//     isDragging = true;
+	// });
+	// element.addEventListener('mousemove', function(event) {
+ //    if (isDragging) {
+ //        // Update the position of the cube here.
+ //    }
+	// });
+	// element.addEventListener('mouseup', function(event) {
+ //    isDragging = false;
+	// });
+	// element.addEventListener('mouseleave', function(event) {
+ //    isDragging = false;
+	// });
+	// cube10.addEventListener('mousedown', function(event) {
+	//     isDragging = true;
+	//     initialCube = event.target;
+	// });
+	// cube3.addEventListener('mouseup', function(event) {
+	//     if (isDragging && initialCube) {
+	//         isDragging = false;
 	
-                      let isDragging = false;
-    let startX, currentX;
+	//         // Swap the cubes in the DOM.
+	//         let temp = document.createElement('div');
+	//         initialCube.parentNode.insertBefore(temp, initialCube);
+	//         event.target.parentNode.insertBefore(initialCube, event.target);
+	//         temp.parentNode.insertBefore(event.target, temp);
+	//         temp.parentNode.removeChild(temp);
+	//     }
+	// });
+	// cubes.forEach(cube => {
+	// 	cube.addEventListener('mouseup', function (event) {
+	// 	        if (draggedElement) {
+	// 	            swapElements(draggedElement, event.target);
+	// 	            draggedElement = null;
+	// 	        }
+	// 	});
+	// });
+	// function swapElements(el1, el2) {
+	//     const parent1 = el1.parentNode;
+	//     const next1 = el1.nextSibling === el2 ? el1 : el1.nextSibling;
+	
+	//     el2.parentNode.insertBefore(el1, el2);
+	//     parent1.insertBefore(el2, next1);
+	// }
+	/*const itemsContainer = document.querySelector(“.items”);
 
-    document.querySelectorAll('.item').forEach(cube => {
-        item.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.clientX - cube.getBoundingClientRect().left;
-            cube.style.cursor = 'grabbing';
-        });
+const items = document.querySelectorAll(“.item”);
 
-        item.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                e.preventDefault();
-                currentX = e.clientX - startX;
-                const containerRect = cube.parentElement.getBoundingClientRect();
-                if (currentX >= 0 && currentX <= containerRect.width - cube.offsetWidth) {
-                    item.style.left = currentX + 'px';
-                }
-            }
-        });
+let isDragging = false;
 
-        item.addEventListener('mouseup', () => {
-            isDragging = false;
-            cube.style.cursor = 'grab';
-        });
+let startX;
 
-        item.addEventListener('mouseleave', () => {
-            if (isDragging) {
-                isDragging = false;
-                item.style.cursor = 'grab';
-            }
-        });
-    });
-</script>
-    
+let scrollLeft;
+
+itemsContainer.addEventListener(“mousedown”, (e) => {
+
+isDragging = true;
+
+startX = e.pageX - itemsContainer.offsetLeft;
+
+scrollLeft = itemsContainer.scrollLeft;
+
+itemsContainer.classList.add(“active”);
+
+});
+
+itemsContainer.addEventListener(“mouseup”, () => {
+
+isDragging = false;
+
+itemsContainer.classList.remove(“active”);
+
+});
+
+itemsContainer.addEventListener(“mouseleave”, () => {
+
+isDragging = false;
+
+itemsContainer.classList.remove(“active”);
+
+});
+
+itemsContainer.addEventListener(“mousemove”, (e) => {
+
+if (!isDragging) return;
+
+e.preventDefault();
+
+const x = e.pageX - itemsContainer.offsetLeft;
+
+const walk = (x - startX) * 2;
+
+itemsContainer.scrollLeft = scrollLeft - walk;
+
+});
+
+itemsContainer.addEventListener(“contextmenu”, (e) => {
+
+e.preventDefault();
+
+});*/
 </script>
 
   </body>
