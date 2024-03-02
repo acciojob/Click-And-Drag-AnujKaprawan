@@ -1,32 +1,30 @@
 // Your code here.
-const items = document.querySelectorAll('.item');
+  const itemsContainer = document.querySelector('.items');
+  let isDragging = false;
+  let startPosX = 0;
+  let scrollLeft = 0;
 
-items.forEach(item => {
-	item.draggable = true;
-    item.addEventListener('dragstart', dragStart);
-    item.addEventListener('dragover', dragOver);
-    item.addEventListener('drop', drop);
-});
+  itemsContainer.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startPosX = e.pageX - itemsContainer.offsetLeft;
+    scrollLeft = itemsContainer.scrollLeft;
+    itemsContainer.classList.add('active');
+  });
 
-let dragged = null;
+  itemsContainer.addEventListener('mouseleave', () => {
+    isDragging = false;
+    itemsContainer.classList.remove('active');
+  });
 
-function dragStart(event) {
-    dragged= event.target;
-    // event.dataTransfer.setData('text/plain', draggedId);
-}
+  itemsContainer.addEventListener('mouseup', () => {
+    isDragging = false;
+    itemsContainer.classList.remove('active');
+  });
 
-function dragOver(event) {
-    event.preventDefault();
-}
-
-function drop(event) {
-    event.preventDefault();
-    const dropped = event.target;
-    
-    const tempHTML = dragged.innerHTML;
-	const classN = dragged.className;
-    dragged.innerHTML = dropped.innerHTML;
-	dragged.className = dropped.className;
-    dropped.innerHTML = tempHTML;
-	dropped.className = classN;
-}
+  itemsContainer.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - itemsContainer.offsetLeft;
+    const scrollOffset = (x - startPosX) * 1.5;
+    itemsContainer.scrollLeft = scrollLeft - scrollOffset;
+  });
