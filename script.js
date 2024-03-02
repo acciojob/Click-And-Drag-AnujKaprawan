@@ -28,3 +28,7 @@
     const scrollOffset = (x - startPosX) * 1.5;
     itemsContainer.scrollLeft = scrollLeft - scrollOffset;
   });
+
+cy.get('.items').should({ timeout: 10000 }, $items => {
+  expect($items[0].scrollLeft).to.be.greaterThan(0);
+});
